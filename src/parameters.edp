@@ -1,0 +1,30 @@
+real mu = 0.01;
+real rho = 1.0;
+
+string testcase = "healthy";
+
+if (ARGV.n > 2)
+{
+    testcase = ARGV[2];
+}
+
+cout << "Running testcase: " << testcase << endl;
+
+string meshfile;
+string outputfile;
+
+if (testcase == "healthy")
+{
+    meshfile = "mesh/healthy.msh";
+    outputfile = "output/healthy.vtu";
+}
+else if (testcase == "stenosis")
+{
+    meshfile = "mesh/stenosis.msh";
+    outputfile = "output/stenosis.vtu";
+}
+else
+{
+    cout << "Unknown testcase." << endl;
+    exit(1);
+}

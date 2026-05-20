@@ -1,0 +1,5 @@
+fespace Vh(Th, P2);
+fespace Qh(Th, P1);
+
+Vh ux, uy, vx, vy;
+Qh p, q;

@@ -1,0 +1,18 @@
+problem Stokes([ux,uy,p],[vx,vy,q])
+    =
+    int2d(Th)(
+          mu*( dx(ux)*dx(vx)
+             + dy(ux)*dy(vx)
+             + dx(uy)*dx(vy)
+             + dy(uy)*dy(vy) )
+
+        - p*(dx(vx)+dy(vy))
+        - q*(dx(ux)+dy(uy))
+
+        + 1e-8*p*q
+    )
+
+    + on(inlet, ux=uin, uy=0)
+    + on(walls, ux=0, uy=0);
+
+Stokes;
