@@ -6,7 +6,7 @@ Point(2) = {3.0, 0.0, 0, lc};
 Point(3) = {6.0, 0.0, 0, lc};
 
 Point(4) = {0.0, 1.0, 0, lc};
-Point(5) = {3.0, 0.65, 0, lc};
+Point(5) = {3.0, 1.0, 0, lc};
 Point(6) = {6.0, 1.0, 0, lc};
 
 // Bottom lines

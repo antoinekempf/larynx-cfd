@@ -1,12 +1,13 @@
 lc = 0.08;
+ls = 0.001;
 
 // Points
 Point(1) = {0.0, 0.0, 0, lc};
-Point(2) = {3.0, 0.0, 0, lc};
+Point(2) = {3.0, 0.0, 0, ls};
 Point(3) = {6.0, 0.0, 0, lc};
 
 Point(4) = {0.0, 1.0, 0, lc};
-Point(5) = {3.0, 0.35, 0, lc};
+Point(5) = {3.0, 0.35, 0, ls};
 Point(6) = {6.0, 1.0, 0, lc};
 
 // Bottom lines

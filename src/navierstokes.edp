@@ -1,0 +1,57 @@
+Vh uoldx = ux; 
+Vh uoldy = uy;
+
+Vh cx, cy;
+
+problem NavierStokesUnsteady([ux,uy,p],[vx,vy,q]) =
+    int2d(Th)(
+          (rho / dt) * (ux*vx + uy*vy)
+          
+        + mu * ( dx(ux)*dx(vx) + dy(ux)*dy(vx) + dx(uy)*dx(vy) + dy(uy)*dy(vy) )
+        
+        - p * (dx(vx)+dy(vy))
+        - q * (dx(ux)+dy(uy))
+        + 1e-8 * p * q
+    )
+    - int2d(Th)(
+          (rho / dt) * cx * vx
+        + (rho / dt) * cy * vy
+    )
+    + on(inlet, ux=uin, uy=0)
+    + on(walls, ux=0, uy=0);
+
+cout << "--- Starting unsteady Navier-Stokes simulation ---" << endl;
+
+int iter = 0;
+
+for (real t = 0; t <= Tmax; t += dt) {
+    
+    cx = convect([uoldx, uoldy], -dt, uoldx);
+    cy = convect([uoldx, uoldy], -dt, uoldy);
+
+    NavierStokesUnsteady;
+
+    uoldx = ux;
+    uoldy = uy;
+
+    if (iter % 10 == 0)
+    {
+        string filename =
+            "output/flow/flow_" + iter + ".vtu";
+
+        Qh vort = dx(uy) - dy(ux);
+
+        savevtk(
+            filename,
+            Th,
+            [ux,uy],
+            p,
+            vort,
+            dataname="velocity pressure vorticity"
+        );
+        
+    }
+    iter++;
+    
+    // plot(Th, [ux, uy], p, value=true, wait=false, cmm="Temps t = " + t + " s");
+}

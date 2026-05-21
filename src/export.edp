@@ -1,7 +1,10 @@
+Qh vort = dx(uy) - dy(ux);
+
 savevtk(
     outputfile,
     Th,
     [ux,uy],
     p,
-    dataname="velocity pressure"
+    vort,
+    dataname="velocity pressure vorticity"
 );

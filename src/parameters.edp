@@ -1,5 +1,10 @@
 real mu = 0.01;
-real rho = 1.0;
+real rho = 50.0;
+int maxiter = 100;
+real tol = 1e-6;
+
+real dt = 0.01;
+real Tmax = 10;
 
 string testcase = "healthy";
 
@@ -22,6 +27,11 @@ else if (testcase == "stenosis")
 {
     meshfile = "mesh/stenosis.msh";
     outputfile = "output/stenosis.vtu";
+}
+else if (testcase == "larynx")
+{
+    meshfile = "mesh/larynx.msh";
+    outputfile = "output/larynx.vtu";
 }
 else
 {
